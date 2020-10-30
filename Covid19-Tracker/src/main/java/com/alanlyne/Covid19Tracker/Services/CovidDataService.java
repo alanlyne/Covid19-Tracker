@@ -23,17 +23,19 @@ import org.springframework.stereotype.Service;
 
 public class CovidDataService {
 
-    // private static String CovidDataURL =
-    // "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
     private static String CovidDataURL = "https://opendata-geohive.hub.arcgis.com/datasets/d9be85b30d7748b5b7c09450b8aede63_0.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D";
 
-    private List<CountyStats> stats = new ArrayList<>();
+    private List<Object> stats = new ArrayList<>();
+
+    public List<Object> getStats() {
+        return stats;
+    }
 
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *")
     public void getCovidData() throws IOException, InterruptedException {
 
-        List<CountyStats> newStats = new ArrayList<>();
+        List<Object> newStats = new ArrayList<>();
 
         // Create a client
         HttpClient client = HttpClient.newHttpClient();
@@ -68,8 +70,6 @@ public class CovidDataService {
 
             countyStat.setCounty(record.get("CountyName"));
 
-            newStats.add(countyStat);
-
             countyNum[count] = countyStat;
 
             count++;
@@ -77,6 +77,7 @@ public class CovidDataService {
         }
         for (int i = 0; i < 26; i++) {
             System.out.println(countyNum[i]);
+            newStats.add(countyNum[i]);
         }
         this.stats = newStats;
     }
