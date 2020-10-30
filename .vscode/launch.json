@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Covid19TrackerApplication<Covid19-Tracker>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.alanlyne.Covid19Tracker.Covid19TrackerApplication",
+            "projectName": "Covid19-Tracker",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Covid19TrackerApplication<Covid19-Tracker>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "Covid19TrackerApplication",
+            "projectName": "Covid19-Tracker",
+            "args": ""
+        }
+    ]
+}
