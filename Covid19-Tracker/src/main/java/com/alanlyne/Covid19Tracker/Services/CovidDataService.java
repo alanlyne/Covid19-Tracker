@@ -32,7 +32,7 @@ public class CovidDataService {
     }
 
     @PostConstruct
-    @Scheduled(cron = "* * 1 * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void getCovidData() throws IOException, InterruptedException {
 
         List<Object> newStats = new ArrayList<>();
@@ -64,6 +64,8 @@ public class CovidDataService {
                 countyStat = (CountyStats) countyNum[count];
 
                 countyStat.setTodaysTotal(casesNum - countyStat.getLatestTotal());
+                countyStat.setDate(record.get("TimeStamp").substring(0, 10));
+
             }
 
             countyStat.setLatestTotal(casesNum);
@@ -73,13 +75,14 @@ public class CovidDataService {
             countyNum[count] = countyStat;
 
             count++;
-
         }
+        
         for (int i = 0; i < 26; i++) {
             System.out.println(countyNum[i]);
             newStats.add(countyNum[i]);
         }
         this.stats = newStats;
+
     }
 
 }

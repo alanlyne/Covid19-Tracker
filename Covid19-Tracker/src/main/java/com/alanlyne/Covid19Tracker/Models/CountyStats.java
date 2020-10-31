@@ -45,8 +45,8 @@ public class CountyStats {
         "County = " + county + '\'' +
         ", Total Cases = " + latestTotal + '\'' +
         ", Todays Cases = " + todaysTotal + '\'' +
+        ", Date = " + date + '\'' +
         "}";
         
     }
-
 }

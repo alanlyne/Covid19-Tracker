@@ -21,7 +21,13 @@
 
     <div class="jumbotron">
       <h1 class="display-4" th:text="${totalReportedCases}"></h1>
-      <p class="lead">Total cases reported, in Ireland, as of today</p>
+      <p class="lead">
+        Total cases reported, in Ireland, as of
+        <span th:each="countyStat : ${countyStats[0]}">
+          <span th:text="${countyStat.date}"></span
+        ></span>
+        *
+      </p>
       <hr class="my-4" />
       <p>
         <span>New cases reported since previous day:</span>
@@ -30,11 +36,13 @@
     </div>
 
     <table class="table">
-      <tr>
-        <th>County</th>
-        <th>Total Cases</th>
-        <th>Todays Cases</th>
-      </tr>
+      <thead class="thead-dark">
+        <tr>
+          <th>County</th>
+          <th>Total Cases</th>
+          <th>Todays Cases</th>
+        </tr>
+      </thead>
       <tr th:each="countyStat : ${countyStats}">
         <td th:text="${countyStat.county}"></td>
         <td th:text="${countyStat.latestTotal}"></td>
@@ -42,15 +50,20 @@
       </tr>
     </table>
 
-    <!-- Footer -->
-    <footer class="page-footer font-small blue">
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-10">
-        <a href="https://www.linkedin.com/in/alanlyne/"> Alan Lyne</a>
-      </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
+    <p>* Updated at the will of Ordnance Survey Ireland</p>
 
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+            
+      <div class="container">
+                
+        <p class="navbar-text">
+          <a href="https://www.linkedin.com/in/alanlyne/">Linkedin</a>
+          &emsp;
+          <a href="https://github.com/alanlyne">Github</a>
+        </p>
+              
+      </div>
+          
+    </div>
   </body>
 </html>
